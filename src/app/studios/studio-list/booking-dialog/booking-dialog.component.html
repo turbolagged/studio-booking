@@ -33,6 +33,10 @@
         </mat-form-field>
     </form>
 
+    <div *ngIf="studioBookingForm.hasError('slotClash') && studioBookingForm.get('slotStart')?.touched">
+        <mat-error>The selected time slot overlaps with an existing booking.</mat-error>
+    </div>
+
     <!-- <button mat-raised-button color="primary" (click)="cancel()">Nevermind</button> -->
     <button mat-button (click)="closeModal()">Nevermind</button>
 

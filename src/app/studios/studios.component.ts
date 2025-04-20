@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { StudioListService } from '../services/studio-list.service';
-import { Studio, StudioEntity } from '../types/studio';
+import { Studio, StudioEntity } from '../interface/studio';
 
 @Component({
   selector: 'app-studios',

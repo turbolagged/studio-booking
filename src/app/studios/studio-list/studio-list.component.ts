@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { StudioEntity, Studio } from 'src/app/types/studio';
+import { StudioEntity, Studio } from 'src/app/interface/studio';
 
 @Component({
   selector: 'app-studio-list',

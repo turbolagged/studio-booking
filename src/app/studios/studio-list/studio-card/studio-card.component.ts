@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Studio } from 'src/app/types/studio';
+import { Studio } from 'src/app/interface/studio';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { BookingDialogComponent } from '../booking-dialog/booking-dialog.component';
 

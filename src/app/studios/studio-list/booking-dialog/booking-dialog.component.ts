@@ -2,8 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Studio } from 'src/app/types/studio';
+import { Studio } from 'src/app/interface/studio';
 import * as dayjs from 'dayjs'
+import { bookingSlotValidator } from '../../validators/booking-slot-validator';
 
 @Component({
   selector: 'app-booking-dialog',
@@ -17,6 +18,7 @@ export class BookingDialogComponent {
 
   constructor(public bookingDialogRef: MatDialogRef<BookingDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Studio, private snackBar: MatSnackBar) {
+    this.bookingList = [];
 
     this.studioBookingForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -24,9 +26,12 @@ export class BookingDialogComponent {
       date: new FormControl('', Validators.required),
       slotStart: new FormControl('', Validators.required),
       slotEnd: new FormControl('', Validators.required)
-    });
+    }, {
+      validators: bookingSlotValidator(this.bookingList)
+    }
+  );
 
-    this.bookingList = [];
+    
   }
 
   get slotStartTime() {
@@ -57,14 +62,14 @@ export class BookingDialogComponent {
       email: this.bookingEmail
     }
 
-    if (this.isSlotClashing(bookingDetails)) {
+    // if (this.isSlotClashing(bookingDetails)) {
       
-      console.warn('Slot overlaps with an existing booking');
-    } else {
-      console.log(' Slot is available');
-    }
+    //   console.warn('Slot overlaps with an existing booking');
+    // } else {
+    //   console.log(' Slot is available');
+    // }
 
-    if (this.studioBookingForm.invalid || this.isSlotClashing(bookingDetails)) {
+    if (this.studioBookingForm.invalid) {
       return;
     }
 
@@ -72,8 +77,7 @@ export class BookingDialogComponent {
     const bookingListArray = [];
     bookingListArray.push(bookingDetails);
 
-    finalArr = [...bookingListArray, ...this.bookingList]
-
+    finalArr = [...bookingListArray, ...this.bookingList];
     localStorage.setItem('bookingList', JSON.stringify(finalArr))
 
     this.closeModal()
@@ -100,21 +104,21 @@ export class BookingDialogComponent {
 
   }
 
-  isSlotClashing(requestSlot: any): boolean {
-    const formattedDate = dayjs(requestSlot?.date).format('YYYY-MM-DD');
-    const reqStart = dayjs(`${formattedDate} ${requestSlot?.start}`);
-    const reqEnd = dayjs(`${formattedDate} ${requestSlot?.end}`);
+  // isSlotClashing(requestSlot: any): boolean {
+  //   const formattedDate = dayjs(requestSlot?.date).format('YYYY-MM-DD');
+  //   const reqStart = dayjs(`${formattedDate} ${requestSlot?.start}`);
+  //   const reqEnd = dayjs(`${formattedDate} ${requestSlot?.end}`);
   
-    return this.bookingList.some((booking) => {
-      if (booking.studioId !== requestSlot?.studioId) {
-        return false;
-      }
-      const existingStart = dayjs(`${booking.date} ${booking.start}`);
-      const existingEnd = dayjs(`${booking.date} ${booking.end}`);
+  //   return this.bookingList.some((booking) => {
+  //     if (booking.studioId !== requestSlot?.studioId) {
+  //       return false;
+  //     }
+  //     const existingStart = dayjs(`${booking.date} ${booking.start}`);
+  //     const existingEnd = dayjs(`${booking.date} ${booking.end}`);
   
-      const isBefore = reqEnd.isBefore(existingStart);
-      const isAfter = reqStart.isAfter(existingEnd);
-      return !(isBefore || isAfter);
-    });
-  }
+  //     const isBefore = reqEnd.isBefore(existingStart);
+  //     const isAfter = reqStart.isAfter(existingEnd);
+  //     return !(isBefore || isAfter);
+  //   });
+  // }
 }
