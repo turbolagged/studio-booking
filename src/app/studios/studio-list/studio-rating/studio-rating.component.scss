@@ -1,0 +1,20 @@
+/* rating.component.css */
+.star-full {
+  color: gold;
+}
+
+.star-half {
+  color: gold;
+  background: linear-gradient(to right, gold 50%, lightgray 50%);
+  -webkit-background-clip: text;
+  text-fill-color: transparent;
+}
+
+.star-empty {
+  color: lightgray;
+}
+
+.rating {
+  font-size: 24px;
+  display: inline-flex;
+}

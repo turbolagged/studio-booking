@@ -8,10 +8,7 @@ import { Studio, StudioEntity } from '../interface/studio';
   styleUrls: ['./studios.component.scss']
 })
 export class StudiosComponent {
-
   constructor(private studioListService: StudioListService) {}
-  // studioList: { Studios: { Id: number; Name: string; Type: string; Location: { City: string; Area: string; Address: string; Coordinates: { Latitude: number; Longitude: number; }; }; Contact: { Phone: string; Email: string; }; Amenities: string[]; Description: string; PricePerHour: number; Currency: string; Availability: { Open: string; Close: string; }; Rating: number; Images: string[]; }[]; } | undefined
-
   studioList!: StudioEntity;
   ngOnInit() {
     this.initFunction();
@@ -21,7 +18,6 @@ export class StudiosComponent {
     this.studioList = this.studioListService.studiosList();
     console.log(this.studioList)
   }
-
 
   updateStudioList($event: any) {
     if (!$event) {

@@ -1,2 +1,3 @@
+<h1>Studio Booking</h1>
 <app-search-by-place (studioFilterEvent)="updateStudioList($event)"></app-search-by-place>
-<app-studio-list [studios]="studioList?.Studios" *ngIf="studioList?.Studios"></app-studio-list>
+<app-studio-list [studios]="studioList.Studios" *ngIf="studioList?.Studios"></app-studio-list>

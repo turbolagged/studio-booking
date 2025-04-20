@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StudiosModule } from './studios/studios.module';
-import { StudioListComponent } from './studios/studio-list/studio-list.component';
 import { StudiosComponent } from './studios/studios.component';
 
 const routes: Routes = [

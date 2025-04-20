@@ -2,14 +2,11 @@
     <section>
         <strong>Name: {{studio?.Name}}</strong>
         <p>Type: {{studio?.Type}}</p>
-        <p> Location: {{studio?.Location?.City}}, {{studio?.Location?.Area}}, {{studio?.Location?.Address}},
-        </p>
-        <p> Amenities: {{studio?.Amenities?.toString()}}
-        </p>
-        <p> Price per hour: {{studio?.PricePerHour}}
-        </p>
-        <p> Rating: {{studio?.Rating}}
-        </p>
+        <p> Location: {{studio?.Location?.City}}, {{studio?.Location?.Area}}, {{studio?.Location?.Address}}</p>
+        <p> Amenities: {{studio?.Amenities?.toString()}}</p>
+        <p> Price per hour: {{studio?.Currency}} {{studio?.PricePerHour}}</p>
+        <!-- <p> Rating: {{studio?.Rating}}</p> -->
+         <app-studio-rating [rating]="studio?.Rating ?? 0"></app-studio-rating>
     </section>
 
     <!-- // commented as img links are not valid -->

@@ -17,7 +17,7 @@ export class BookingDialogComponent {
   bookingList: any[];
 
   constructor(public bookingDialogRef: MatDialogRef<BookingDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Studio, private snackBar: MatSnackBar) {
+    @Inject(MAT_DIALOG_DATA) public studioData: Studio, private snackBar: MatSnackBar) {
     this.bookingList = [];
 
     this.studioBookingForm = new FormGroup({
@@ -57,7 +57,7 @@ export class BookingDialogComponent {
       date: dayjs(this.date).format('YYYY-MM-DD'),
       start: this.slotStartTime,
       end: this.slotEndTime,
-      studioId: this.data.Id,
+      studioId: this.studioData.Id,
       name: this.bookingName,
       email: this.bookingEmail
     }

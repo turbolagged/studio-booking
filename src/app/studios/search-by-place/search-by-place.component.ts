@@ -8,7 +8,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
   styleUrls: ['./search-by-place.component.scss']
 })
 export class SearchByPlaceComponent {
-
   placeFilterForm: FormGroup;
   @Output() studioFilterEvent = new EventEmitter<any>();
 
