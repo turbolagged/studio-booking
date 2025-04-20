@@ -22,12 +22,15 @@
           </mat-form-field>
      <br>
     
-          <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Slot starts</mat-label>
+            <input matInput formControlName="slotStart" type="timeslot" step="60">
+            </mat-form-field>
+
             <mat-form-field appearance="fill">
-                <mat-label>Choose time</mat-label>
-                <input matInput formControlName="time" type="time" step="60">
-              </mat-form-field>
-          </div>
+                <mat-label>Slot ends</mat-label>
+                <input matInput formControlName="slotEnd" type="timeslot" step="60">
+                </mat-form-field>
       </form>
 
       <!-- <button mat-raised-button color="primary" (click)="cancel()">Nevermind</button> -->

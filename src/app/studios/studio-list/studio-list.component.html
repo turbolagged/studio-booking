@@ -1,12 +1,9 @@
+<div *ngFor="let studio of studios">
+    <!-- {{studio}} 1 -->
+    <app-studio-card [studio]="studio"></app-studio-card>
+</div>
 
-
-<!-- <mat-grid-list cols="2" rowHeight="2:1"> -->
-
-
-    <div *ngFor="let studio of studios" >
-        <!-- {{studio}} 1 -->
-        <app-studio-card [studio]="studio" ></app-studio-card>
-    </div>
+<div *ngIf="studios?.length == 0">
+    No studios available
+</div>
     
-
-  <!-- </mat-grid-list> -->

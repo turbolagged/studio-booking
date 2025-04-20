@@ -7,6 +7,7 @@ import { StudiosComponent } from './studios.component';
 import {MaterialModule} from 'src/app/material.module';
 import { BookingDialogComponent } from './studio-list/booking-dialog/booking-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchByPlaceComponent } from './search-by-place/search-by-place.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     StudioListComponent,
     StudioCardComponent,
     StudiosComponent,
-    BookingDialogComponent
+    BookingDialogComponent,
+    SearchByPlaceComponent
   ],
   imports: [
     CommonModule,

@@ -15,7 +15,11 @@ export class StudioCardComponent {
   constructor(public dialog: MatDialog) {}
 
   openBookingDialogue() {
-    const dialogRef = this.dialog.open(BookingDialogComponent);
+    const dialogRef = this.dialog.open(BookingDialogComponent, {
+      // data: {
+        // studioTime: studio?.Availability
+      // }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

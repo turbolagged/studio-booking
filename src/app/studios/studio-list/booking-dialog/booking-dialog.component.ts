@@ -15,11 +15,13 @@ export class BookingDialogComponent {
 
   constructor(public bookingDialogRef: MatDialogRef<BookingDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private snackBar: MatSnackBar) {
+      
     this.studioBookingForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       date: new FormControl('', Validators.required),
-      time: new FormControl('', Validators.required)
+      slotStart: new FormControl('', Validators.required),
+      slotEnd: new FormControl('', Validators.required)
     });
   }
 
