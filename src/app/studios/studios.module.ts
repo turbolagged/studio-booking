@@ -8,6 +8,8 @@ import { BookingDialogComponent } from './studio-list/booking-dialog/booking-dia
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchByPlaceComponent } from './search-by-place/search-by-place.component';
 import { StudioRatingComponent } from './studio-list/studio-rating/studio-rating.component';
+import { BookingDetailsComponent } from './studio-list/booking-details/booking-details.component';
+import { BookingListComponent } from './booking-list/booking-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { StudioRatingComponent } from './studio-list/studio-rating/studio-rating
     StudiosComponent,
     BookingDialogComponent,
     SearchByPlaceComponent,
-    StudioRatingComponent
+    StudioRatingComponent,
+    BookingDetailsComponent,
+    BookingListComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,10 @@
+<div>
+  <h1>Current Booking List</h1>
+  <div *ngFor="let bookingDetails of bookingList" class="card">
+    <h2>Studio: {{bookingDetails?.studioName}}</h2>
+    <p>User: {{bookingDetails?.name}}</p>
+    <p>Email: {{bookingDetails?.email}}</p>
+    <p>Date: {{bookingDetails?.date}}</p>
+    <p>Time: {{bookingDetails?.start}} - {{bookingDetails?.end}}</p>
+  </div>
+</div>

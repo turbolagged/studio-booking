@@ -3,7 +3,6 @@ import { Studio } from 'src/app/interface/studio';
 import {MatDialog} from '@angular/material/dialog';
 import { BookingDialogComponent } from '../booking-dialog/booking-dialog.component';
 
-
 @Component({
   selector: 'app-studio-card',
   templateUrl: './studio-card.component.html',

@@ -1,12 +1,11 @@
 <div class="card">
     <section>
-        <strong>Name: {{studio?.Name}}</strong>
+        <h2>Name: {{studio?.Name}}</h2>
         <p>Type: {{studio?.Type}}</p>
-        <p> Location: {{studio?.Location?.City}}, {{studio?.Location?.Area}}, {{studio?.Location?.Address}}</p>
+        <p> Location: {{studio?.Location?.Area}}, {{studio?.Location?.Address}}, {{studio?.Location?.City}}</p>
         <p> Amenities: {{studio?.Amenities?.toString()}}</p>
         <p> Price per hour: {{studio?.Currency}} {{studio?.PricePerHour}}</p>
-        <!-- <p> Rating: {{studio?.Rating}}</p> -->
-         <app-studio-rating [rating]="studio?.Rating ?? 0"></app-studio-rating>
+        <app-studio-rating [rating]="studio?.Rating ?? 0"></app-studio-rating>
     </section>
 
     <!-- // commented as img links are not valid -->

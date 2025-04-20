@@ -1,3 +1,5 @@
-<h1>Studio Booking</h1>
-<app-search-by-place (studioFilterEvent)="updateStudioList($event)"></app-search-by-place>
+<div class="flex-container">
+  <app-search-by-place (studioFilterEvent)="updateStudioList($event)"></app-search-by-place>
+  <h3 (click)="goToBookingList()" style="cursor: pointer;">Check Booking List</h3>
+</div>
 <app-studio-list [studios]="studioList.Studios" *ngIf="studioList?.Studios"></app-studio-list>

@@ -1,0 +1,13 @@
+<div class="booking-details">
+  <h1>Your booking is confirmed</h1>
+  <p>Here are the booking details: </p>
+    <p>Studio: {{bookedStudio?.studioName}}</p>
+    <p>User: {{bookedStudio?.name}}</p>
+    <p>Email: {{bookedStudio?.email}}</p>
+    <p>Date: {{bookedStudio?.date}}</p>
+    <p>Time: {{bookedStudio?.start}} - {{bookedStudio?.end}}</p>
+
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close>Okay</button>
+    </div>
+</div>
