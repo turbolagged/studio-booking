@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Studio } from 'src/app/types/studio';
+import * as dayjs from 'dayjs'
 
 @Component({
   selector: 'app-booking-dialog',
@@ -13,9 +15,8 @@ export class BookingDialogComponent {
   studioBookingForm!: FormGroup;
   bookingList: any[];
 
-
   constructor(public bookingDialogRef: MatDialogRef<BookingDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private snackBar: MatSnackBar) {
+    @Inject(MAT_DIALOG_DATA) public data: Studio, private snackBar: MatSnackBar) {
 
     this.studioBookingForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -24,6 +25,8 @@ export class BookingDialogComponent {
       slotStart: new FormControl('', Validators.required),
       slotEnd: new FormControl('', Validators.required)
     });
+
+    this.bookingList = [];
   }
 
   get slotStartTime() {
@@ -33,28 +36,41 @@ export class BookingDialogComponent {
     return this.studioBookingForm.get('slotEnd')?.value;
   }
 
-  get slotDate() {
-    return this.studioBookingForm.get('slotEnd')?.value;
-
+  get date() {
+    return this.studioBookingForm.get('date')?.value;
+  }
+  get bookingName() {
+    return this.studioBookingForm.get('name')?.value;
+  }
+  get bookingEmail() {
+    return this.studioBookingForm.get('email')?.value;
   }
 
   onSubmit() {
 
-    if (this.studioBookingForm.invalid) {
+    const bookingDetails = {
+      date: dayjs(this.date).format('YYYY-MM-DD'),
+      start: this.slotStartTime,
+      end: this.slotEndTime,
+      studioId: this.data.Id,
+      name: this.bookingName,
+      email: this.bookingEmail
+    }
+
+    if (this.isSlotClashing(bookingDetails)) {
+      
+      console.warn('Slot overlaps with an existing booking');
+    } else {
+      console.log(' Slot is available');
+    }
+
+    if (this.studioBookingForm.invalid || this.isSlotClashing(bookingDetails)) {
       return;
     }
 
-
-
-    const targetSlotTime = {
-      start: 
-    }
-
-
-
     let finalArr: any[] = [];
     const bookingListArray = [];
-    bookingListArray.push(this.studioBookingForm.value);
+    bookingListArray.push(bookingDetails);
 
     finalArr = [...bookingListArray, ...this.bookingList]
 
@@ -65,7 +81,7 @@ export class BookingDialogComponent {
 
   }
   closeModal() {
-    this.bookingDialogRef.close()
+    this.bookingDialogRef.close();
   }
 
   successAlert() {
@@ -79,21 +95,26 @@ export class BookingDialogComponent {
   ngOnInit() {
     const existingBookings = localStorage.getItem('bookingList');
     this.bookingList = existingBookings ? [...JSON.parse(existingBookings)] : []
+
+    console.log(this.bookingList);
+
   }
 
-  clashingSlot(time: string, slotStart: string, slotEnd: string): boolean {
-    return time >= slotStart && time <= slotEnd;
-  }
-
-
-  slotsOverlap(startA: string, endA: string, startB: string, endB: string): boolean {
-    return startA < endB && startB < endA;
-  }
-
-
-  doesSlotClash( newSlot: { start: string; end: string }, existingSlots: { start: string; end: string }[]): boolean {
-    return existingSlots.some(slot =>
-      this.slotsOverlap(newSlot.start, newSlot.end, slot.start, slot.end)
-    );
+  isSlotClashing(requestSlot: any): boolean {
+    const formattedDate = dayjs(requestSlot?.date).format('YYYY-MM-DD');
+    const reqStart = dayjs(`${formattedDate} ${requestSlot?.start}`);
+    const reqEnd = dayjs(`${formattedDate} ${requestSlot?.end}`);
+  
+    return this.bookingList.some((booking) => {
+      if (booking.studioId !== requestSlot?.studioId) {
+        return false;
+      }
+      const existingStart = dayjs(`${booking.date} ${booking.start}`);
+      const existingEnd = dayjs(`${booking.date} ${booking.end}`);
+  
+      const isBefore = reqEnd.isBefore(existingStart);
+      const isAfter = reqStart.isAfter(existingEnd);
+      return !(isBefore || isAfter);
+    });
   }
 }

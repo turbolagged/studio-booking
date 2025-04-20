@@ -16,9 +16,7 @@ export class StudioCardComponent {
 
   openBookingDialogue() {
     const dialogRef = this.dialog.open(BookingDialogComponent, {
-      // data: {
-        // studioTime: studio?.Availability
-      // }
+      data: this.studio
     });
 
     dialogRef.afterClosed().subscribe(result => {
