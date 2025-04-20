@@ -1,0 +1,18 @@
+<div>
+    <section>
+        Name: {{studio?.Name}}
+        Type: {{studio?.Type}}
+        Location: {{studio?.Location?.City}}, {{studio?.Location?.Area}}, {{studio?.Location?.Address}}, 
+        Amenities: {{studio?.Amenities?.toString()}}
+        Price per hour: {{studio?.PricePerHour}}
+        Rating: {{studio?.Rating}}
+    </section>
+
+    <!-- // commented as img links are not valid -->
+    <!-- <div *ngFor="let img of studio?.Images">
+        <img [src]="img" alt="studio-img" srcset="" height="50" width="40">
+    </div> -->
+    
+    <button mat-raised-button color="primary" (click)="openBookingDialogue()">Book Now</button>
+
+</div>
